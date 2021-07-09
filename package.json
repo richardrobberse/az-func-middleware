@@ -1,0 +1,39 @@
+{
+  "name": "az-func-middleware",
+  "version": "1.0.0",
+  "description": "Simple middleware for Azure Functions",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "rimraf ./dist && tsc --build tsconfig.json",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardrobberse/az-func-middleware.git"
+  },
+  "keywords": [
+    "Azure Functions middleware",
+    "Azure Functions",
+    "Functions",
+    "Middleware",
+    "Function App"
+  ],
+  "author": "Richard Robberse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/richardrobberse/az-func-middleware/issues"
+  },
+  "homepage": "https://github.com/richardrobberse/az-func-middleware#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@azure/functions": "^1.2.3"
+  }
+}
