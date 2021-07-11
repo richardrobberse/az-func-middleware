@@ -58,4 +58,39 @@ describe('withMiddleware', () => {
 
     await expect(wrapped(mockedContext)).rejects.toThrow(new Error('next() was called twice'))
   })
+
+  test(`it should mutate context.res`, async () => {
+    const body = { prop1: 'val1' }
+    const middleware = jest.fn(async (context: Context, next: Next) => {
+      context.res = {
+        status: 200,
+        body,
+      }
+      await next(context)
+    })
+
+    const wrapped = withMiddleware(mockedAzureFunction, [middleware])
+
+    await wrapped(mockedContext)
+
+    expect(mockedContext.res!.body).toMatchObject(body)
+    expect(mockedContext.res!.status).toBe(200)
+  })
+
+  test(`it should add a custom object to the context`, async () => {
+    const data = { prop1: 'val1' }
+    const middleware = jest.fn(async (context: Context, next: Next) => {
+      ;(context as any).data = data
+      await next(context)
+    })
+
+    const wrapped = withMiddleware(mockedAzureFunction, [middleware])
+
+    await wrapped(mockedContext)
+
+    const dataOnContext = (mockedContext as any).data
+
+    expect(dataOnContext).toBeDefined()
+    expect(dataOnContext).toMatchObject(data)
+  })
 })
