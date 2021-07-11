@@ -1,3 +1,5 @@
+![master](https://github.com/richardrobberse/az-func-middleware/actions/workflows/main.yml/badge.svg?branch=master)
+
 # az-func-middleware
 
 Simple middleware for Azure Functions
