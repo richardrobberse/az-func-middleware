@@ -5,22 +5,29 @@ on:
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish NPM package'
+        required: true
+        default: 'false'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.2.0
         with:
           node-version: 14.x
+          registry-url: 'https://registry.npmjs.org'
 
       - run: npm ci
       - run: npm run build
       - run: npm run test
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          if: ${{ inputs.publish == 'true' }}
       
