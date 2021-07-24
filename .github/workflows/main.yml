@@ -29,5 +29,5 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          if: ${{ inputs.publish == 'true' }}
+          if: ${{ github.event.inputs.publish == 'true' }}
       
