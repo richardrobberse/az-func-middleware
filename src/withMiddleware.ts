@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from '@azure/functions'
 import { Middleware } from './types'
 
-export default (azureFunction: AzureFunction, middlewares: Middleware[]): AzureFunction => {
+export const withMiddleware = (azureFunction: AzureFunction, middlewares: Middleware[]): AzureFunction => {
   return async (context: Context) => {
     let prevIndex = -1
     const invokeMiddlewareChain = async (context: Context) => {
