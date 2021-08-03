@@ -1,8 +1,11 @@
 {
   "name": "az-func-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple middleware for Azure Functions",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsc -w",
     "build": "rimraf ./dist && tsc --build tsconfig.json",
