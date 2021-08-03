@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from '@azure/functions'
 import 'jest-extended'
-import withMiddleware from '../src/withMiddleware'
+import { withMiddleware } from '../src/withMiddleware'
 import mockedContext from './mocks/mockedContext'
 import { Next } from '../src/types'
 
