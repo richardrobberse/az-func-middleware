@@ -36,3 +36,32 @@ const myMiddleware = async (context: Context, next: Next) => {
 export default withMiddleware(httpTrigger, [myMiddleware])
 
 ```
+
+## Use cases
+
+### Mutating the context in your middleware
+
+```TypeScript
+const myMiddleware = async (context: Context, next: Next) => {
+  context.res = {
+    status: 401,
+    body: { message: 'You do not have access' }
+  }
+
+  // call next depending on your use-case
+  await next(context)
+}
+
+export default withMiddleware(httpTrigger, [myMiddleware])
+
+```
+
+Make sure your function does not execute when the response is already set.
+
+```TypeScript
+const httpTrigger: AzureFunction = async function (context: Context): Promise<void> {
+  if(context.res) return
+}
+
+export default withMiddleware(httpTrigger, [myMiddleware])
+```
