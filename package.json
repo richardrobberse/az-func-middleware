@@ -1,6 +1,6 @@
 {
   "name": "az-func-middleware",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple middleware for Azure Functions",
   "main": "dist/index.js",
   "files": [

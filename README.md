@@ -25,6 +25,8 @@ export default httpTrigger
 You can simply wrap it using the `withMiddleware` function and pass an array of middlewares:
 
 ```TypeScript
+import { withMiddleware, Next } from 'az-func-middleware'
+
 const myMiddleware = async (context: Context, next: Next) => {
   // run your logic
   // ...
@@ -42,6 +44,8 @@ export default withMiddleware(httpTrigger, [myMiddleware])
 ### Mutating the context in your middleware
 
 ```TypeScript
+import { withMiddleware, Next } from 'az-func-middleware'
+
 const myMiddleware = async (context: Context, next: Next) => {
   context.res = {
     status: 401,
